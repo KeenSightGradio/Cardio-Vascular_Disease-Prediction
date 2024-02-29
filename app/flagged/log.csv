@@ -1,0 +1,3 @@
+Age,Gender,Height (cm),Weight (kg),Systolic Blood Pressure,Diastolic Blood Pressure,Cholesterol Level,Glucose Level,Smoking,Alcohol Consumption,Physical Activity,Prediction,flag,username,timestamp
+68,2,191,63,126,80,1,1,0,1,0,No Cardiovascular Disease Detected,,,2024-02-28 21:59:19.126360
+68,1,191,63,152,80,1,1,0,1,0,Cardiovascular Disease Detected,,,2024-02-28 21:59:38.259150
