@@ -40,11 +40,11 @@ def load_dataset(dataset_path):
     
     return X_train, X_test, y_train, y_test
 
-def train_model(train_data, train_label):
+def train_model(train_data, train_label, n_estimators = 7, learning_rate=0.5, max_depth=7):
     model = XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
               colsample_bynode=1, colsample_bytree=1, gamma=0,
-              learning_rate=0.1, max_delta_step=0, max_depth=7,
-              min_child_weight=1, missing=np.NaN, n_estimators=7, n_jobs=-1,
+              learning_rate=learning_rate, max_delta_step=0, max_depth=max_depth,
+              min_child_weight=1, missing=np.NaN, n_estimators=n_estimators, n_jobs=-1,
               nthread=None, objective='binary:logistic', random_state=0,
               reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=None,
               silent=None, subsample=1, verbosity=0)
@@ -55,17 +55,29 @@ def train_model(train_data, train_label):
         pickle.dump(model, f)
 
 
-def test_model(test_data, test_label):
+def test_model(test_data, test_label ):
     with open("C:/Users/hp/GradioApps/Cardio-Vascular-Disease-Prediction/models/cvd_model.pickle", "rb") as f:
         loaded_model = pickle.load(f)
         
     y_pred = loaded_model.predict(test_data)
-    # print(y_pred)
-    score = metrics.accuracy_score(test_label, y_pred)
-    # print(score)
-    return score
+  
+    accuracy_score = metrics.accuracy_score(test_label, y_pred)
+    precision_score = metrics.accuracy_score(test_label, y_pred)
+    recall_score = metrics.accuracy_score(test_label, y_pred)
+    f1_score = metrics.f1_score(test_label, y_pred)
     
-
+    return accuracy_score, precision_score, recall_score, f1_score
+    
+def run( n_estimators, learning_rate, max_depth):
+    file_path = "C:/Users/hp/GradioApps/Cardio-Vascular-Disease-Prediction/dataset/cardio_train.csv"
+    train_data,  test_data, train_label, test_label = load_dataset(file_path)
+    n_estimators, learning_rate, max_depth = 7, 0.5,7
+    train_model(train_data, train_label, n_estimators, learning_rate, max_depth)
+    accuracy_score, precision_score, recall_score, f1_score = test_model(test_data, test_label)
+    
+    return accuracy_score, precision_score, recall_score, f1_score 
+     
+    
 if __name__== "__main__":
     print("started training")
     file_path = "C:/Users/hp/GradioApps/Cardio-Vascular-Disease-Prediction/dataset/cardio_train.csv"
