@@ -46,29 +46,19 @@ def predict_cardio_disease(age, gender, height, weight, ap_hi, ap_lo, cholestero
         
     return result
 
-# Create Gradio interface
-def app_interface():
-    with gr.Blocks() as interface:
-        with gr.Row("Cardiovascular Disease Prediction"):
-            gr.HTML("<img src='keensight_logo.png' alt='Company Logo'>")
-            with gr.Column("Model Training 🧠"):
-                gr.HTML("<h2>Train your own model!</h2>")
-                parameters = [
+parameters = [
                     gr.Slider(minimum=10, maximum=500, step = 5, label="Number of Estimators"),
                     gr.Slider(minimum=0.000000000000000000000001, maximum=1, label="Learning Rate"),
                     gr.Slider(minimum=0, maximum=1000, label="Max Depth"),
                     
                 ]
-                results = [
+results = [
                     gr.Textbox(label="Accuracy Score"),
                     gr.Textbox(label="Precision Score"),
                     gr.Textbox(label="Recall Score"),
                     gr.Textbox(label="F1 Score"),
                 ]
-                train_button = gr.Button(value="Train Model")
-            with gr.Column("Please fill the form to predict cardiovascular disease!"):
-                gr.HTML("<h2>Please fill the form to predict cardiovascular disease!</h2>")
-                inp = [
+inp = [
                     gr.Slider(label="Age", minimum=1, maximum=120),
                     gr.Radio(label="Gender", choices=["Male", "Female"]),
                     gr.Slider(label="Height (cm)", minimum=50, maximum=250, step=1),
@@ -82,12 +72,25 @@ def app_interface():
                     gr.Radio(label="Physical Activity", choices=["Non Active", "Active"]),
                 ]
                 
-                output = [gr.Textbox(label="Prediction")]
-                predict_button = gr.Button(value="Cardiovascular Disease Prediction")
-        train_button.click(run, inputs=parameters, outputs=results)
-        predict_button.click(predict_cardio_disease, inputs=inp, outputs=output)
+output = [gr.Textbox(label="Prediction")]
 
-    interface.launch()
+modeling = gr.Interface(
+    fn = run,
+    inputs = parameters,
+    outputs = results,  
+    submit_btn = "Train",
+    title="Train your own model!"
+    
+)
+train = gr.Interface(
+    fn = predict_cardio_disease,
+    inputs = inp,
+    outputs = output, 
+    submit_btn="Predict",
+    title="Predict Cardio Vascular Disease!!",
+   
+)
+demo = gr.TabbedInterface([modeling, train], ["Train","Predict"])
 
 if __name__ == "__main__":
-    app_interface()
+    demo.launch()
