@@ -62,8 +62,8 @@ def test_model(test_data, test_label ):
     y_pred = loaded_model.predict(test_data)
   
     accuracy_score = metrics.accuracy_score(test_label, y_pred)
-    precision_score = metrics.accuracy_score(test_label, y_pred)
-    recall_score = metrics.accuracy_score(test_label, y_pred)
+    precision_score = metrics.precision_score(test_label, y_pred)
+    recall_score = metrics.recall_score(test_label, y_pred)
     f1_score = metrics.f1_score(test_label, y_pred)
     
     return accuracy_score, precision_score, recall_score, f1_score
@@ -79,16 +79,7 @@ def run( n_estimators, learning_rate, max_depth):
      
     
 if __name__== "__main__":
-    print("started training")
-    file_path = "C:/Users/hp/GradioApps/Cardio-Vascular-Disease-Prediction/dataset/cardio_train.csv"
-    print("dataset preprocessing")
-    train_data,  test_data, train_label, test_label = load_dataset(file_path)
-    print("model training")
-    train_model(train_data, train_label)
-    print("traiing ended")
-    print("testing started")
-    accuracy = test_model(test_data, test_label)
-    print("Accuracy Score:", accuracy)
+    run()
     
     
     
