@@ -79,7 +79,9 @@ modeling = gr.Interface(
     inputs = parameters,
     outputs = results,  
     submit_btn = "Train",
-    title="Train your own model!"
+    title="Train your own model!",
+    description="<img src='https://i.ibb.co/Bw08434/logo-1.png' alt='Logo' style='width:230px;height:100px;border-radius:5px;box-shadow:2px 2px 5px 0px rgba(0,0,0,0.75);background-color:black;'><br> Train your own model here by customizing the inputs and see the accuracy of your model!",
+    
     
 )
 train = gr.Interface(
@@ -87,6 +89,7 @@ train = gr.Interface(
     inputs = inp,
     outputs = output, 
     submit_btn="Predict",
+    description="<img src='https://i.ibb.co/Bw08434/logo-1.png' alt='Logo' style='width:230px;height:100px;border-radius:5px;box-shadow:2px 2px 5px 0px rgba(0,0,0,0.75);background-color:black;'><br>Predict cardio vascular disease of an instance here!!",
     title="Predict Cardio Vascular Disease!!",
    
 )
