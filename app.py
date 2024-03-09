@@ -58,7 +58,7 @@ def app_interface():
                     gr.Slider(minimum=5, maximum=500, step = 5, label="Number of Estimators"),
                     gr.Slider(minimum=0.00000000001, maximum=1, label="Gamma", step = 0.2),
                     gr.Slider(minimum=0.000000000001, maximum=1, label="Learning Rate"),
-                    gr.Slider(minimum=5, maximum=100, label="Max Depth"),
+                    gr.Slider(minimum=5, maximum=100, label="Max Depth", step = 1),
                     gr.Slider(minimum=0.00000000001, maximum=1, label="Test Size", step= 0.1)
                     
                     
@@ -73,6 +73,8 @@ def app_interface():
 
                 ]
                 train_button = gr.Button(value="Train Model")
+                gr.HTML("<h3>Dataset link here: <a href='https://www.kaggle.com/datasets/bhadaneeraj/cardio-vascular-disease-detection'>Dataset</a>.</h3>")
+                   
             with gr.Column("Please fill the form to predict cardiovascular disease!"):
                 gr.HTML("<h2>Please fill the form to predict cardiovascular disease ❤️!</h2>")
                 inp = [
