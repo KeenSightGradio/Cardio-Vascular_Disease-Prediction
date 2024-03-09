@@ -40,23 +40,27 @@ def predict_cardio_disease(age, gender, height, weight, ap_hi, ap_lo, cholestero
     
     # Return prediction result
     if prediction[0] == 0:
-        result = "No Cardiovascular Disease Detected"
+        result = "No Cardiovascular Disease Detected ✅"
     else:
-        result = "Cardiovascular Disease Detected"
+        result = "Cardiovascular Disease Detected ⚠️"
         
     return result
 
 # Create Gradio interface
 def app_interface():
     with gr.Blocks() as interface:
+        gr.HTML("<img src='https://i.ibb.co/Bw08434/logo-1.png' alt='Logo' style='width:230px;height:100px;border-radius:5px;box-shadow:2px 2px 5px 0px rgba(0,0,0,0.75);background-color:black;'><br>",)
+    
         with gr.Row("Cardiovascular Disease Prediction"):
-            gr.HTML("<img src='keensight_logo.png' alt='Company Logo'>")
-            with gr.Column("Model Training 🧠"):
-                gr.HTML("<h2>Train your own model!</h2>")
+            with gr.Column("Model Training"):
+                gr.HTML("<h2>Train your own model ❤️!</h2>")
                 parameters = [
-                    gr.Slider(minimum=10, maximum=500, step = 5, label="Number of Estimators"),
-                    gr.Slider(minimum=0.000000000000000000000001, maximum=1, label="Learning Rate"),
-                    gr.Slider(minimum=0, maximum=1000, label="Max Depth"),
+                    gr.Slider(minimum=5, maximum=500, step = 5, label="Number of Estimators"),
+                    gr.Slider(minimum=0.00000000001, maximum=1, label="Gamma", step = 0.2),
+                    gr.Slider(minimum=0.000000000001, maximum=1, label="Learning Rate"),
+                    gr.Slider(minimum=5, maximum=100, label="Max Depth"),
+                    gr.Slider(minimum=0.00000000001, maximum=1, label="Test Size", step= 0.1)
+                    
                     
                 ]
                 results = [
@@ -64,10 +68,13 @@ def app_interface():
                     gr.Textbox(label="Precision Score"),
                     gr.Textbox(label="Recall Score"),
                     gr.Textbox(label="F1 Score"),
+                    gr.Image(label="ROC Curve"),
+                    gr.Image(label="Learning Curve")
+
                 ]
                 train_button = gr.Button(value="Train Model")
             with gr.Column("Please fill the form to predict cardiovascular disease!"):
-                gr.HTML("<h2>Please fill the form to predict cardiovascular disease!</h2>")
+                gr.HTML("<h2>Please fill the form to predict cardiovascular disease ❤️!</h2>")
                 inp = [
                     gr.Slider(label="Age", minimum=1, maximum=120),
                     gr.Radio(label="Gender", choices=["Male", "Female"]),

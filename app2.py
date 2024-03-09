@@ -82,7 +82,6 @@ modeling = gr.Interface(
     title="Train your own model!",
     description="<img src='https://i.ibb.co/Bw08434/logo-1.png' alt='Logo' style='width:230px;height:100px;border-radius:5px;box-shadow:2px 2px 5px 0px rgba(0,0,0,0.75);background-color:black;'><br> Train your own model here by customizing the inputs and see the accuracy of your model!",
     
-    
 )
 train = gr.Interface(
     fn = predict_cardio_disease,
