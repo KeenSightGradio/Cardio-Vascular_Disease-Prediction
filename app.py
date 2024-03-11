@@ -49,10 +49,12 @@ def predict_cardio_disease(age, gender, height, weight, ap_hi, ap_lo, cholestero
 # Create Gradio interface
 def app_interface():
     with gr.Blocks() as interface:
-        gr.HTML("<img src='https://i.ibb.co/Bw08434/logo-1.png' alt='Logo' style='width:230px;height:100px;border-radius:5px;box-shadow:2px 2px 5px 0px rgba(0,0,0,0.75);background-color:black;'><br>",)
+        
+        # gr.HTML("<img src='https://i.ibb.co/Bw08434/logo-1.png' alt='Logo' style='width:230px;height:100px;border-radius:5px;box-shadow:2px 2px 5px 0px rgba(0,0,0,0.75);background-color:black;'><br>",)
     
         with gr.Row("Cardiovascular Disease Prediction"):
             with gr.Column("Model Training"):
+                gr.Image("logo_keensight.png", height=100, width=300)
                 gr.HTML("<h2>Train your own model ❤️!</h2>")
                 parameters = [
                     gr.Slider(minimum=5, maximum=500, step = 5, label="Number of Estimators"),
@@ -61,15 +63,16 @@ def app_interface():
                     gr.Slider(minimum=5, maximum=100, label="Max Depth", step = 1),
                     gr.Slider(minimum=0.00000000001, maximum=1, label="Test Size", step= 0.1)
                     
-                    
                 ]
                 results = [
                     gr.Textbox(label="Accuracy Score"),
                     gr.Textbox(label="Precision Score"),
                     gr.Textbox(label="Recall Score"),
                     gr.Textbox(label="F1 Score"),
-                    gr.Image(label="ROC Curve"),
-                    gr.Image(label="Learning Curve")
+                    gr.Gallery(allow_preview=True, label="Data Visualization", object_fit="fill", type="numpy", height="auto", rows=(1, 2), columns=[1])
+                    
+                    # gr.Image(label="ROC Curve"),
+                    # gr.Image(label="Learning Curve")
 
                 ]
                 train_button = gr.Button(value="Train Model")

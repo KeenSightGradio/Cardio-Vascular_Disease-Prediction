@@ -144,8 +144,9 @@ def run( n_estimators,gamma, learning_rate, max_depth, test_size):
     
     roc_curve_image = plot_roc_curve(test_data, test_label)
     learning_curve = plot_learning_curve(train_data, train_label, test_data, test_label)
+    visuals = [roc_curve_image, learning_curve]
     
-    return accuracy_score, precision_score, recall_score, f1_score, roc_curve_image, learning_curve
+    return accuracy_score, precision_score, recall_score, f1_score, visuals
      
     
 if __name__== "__main__":
