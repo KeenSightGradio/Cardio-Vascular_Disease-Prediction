@@ -10,7 +10,7 @@ with open("C:/Users/hp/GradioApps/Cardio-Vascular-Disease-Prediction/models/cvd_
 def load_dataset_for_multipredcition(dataset_path):
     not_clean = pd.read_csv(dataset_path) 
     heart_disease_data = not_clean.iloc[:,0].apply(lambda x: pd.Series(str(x).split(";")))
-    print(heart_disease_data)
+    # print(heart_disease_data)
     heart_disease_data.columns = ["id","age","gender","height","weight","ap_hi","ap_lo","cholesterol","gluc","smoke","alco","active",]
 
     column_names = ["id","age","gender","height","weight",
@@ -45,7 +45,7 @@ def multi_prediction(dataset_path):
     Id_tags, heart_disease_data = load_dataset_for_multipredcition(dataset_path)
     feature_names = ["age", "gender", "height", "weight", "ap_hi", "ap_lo", "cholesterol", "gluc", "smoke", "alco", "active"]
     
-    print(type(Id_tags))
+    # print(type(Id_tags))
     predictions = []
     
     for index, row in heart_disease_data.iterrows():
