@@ -16,6 +16,7 @@ from sklearn.metrics import accuracy_score,precision_score,recall_score,confusio
 def load_dataset(dataset_path, test_size):
     not_clean = pd.read_csv(dataset_path) 
     heart_disease_data = not_clean.iloc[:,0].apply(lambda x: pd.Series(str(x).split(";")))
+    print(heart_disease_data)
     heart_disease_data.columns = ["id","age","gender","height","weight","ap_hi","ap_lo","cholesterol","gluc","smoke","alco","active",'cardio']
 
     column_names = ["id","age","gender","height","weight",
