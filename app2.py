@@ -59,8 +59,8 @@ results = [
                     gr.Textbox(label="Precision Score"),
                     gr.Textbox(label="Recall Score"),
                     gr.Textbox(label="F1 Score"),
-                    gr.Image(label="ROC Curve"),
-                    gr.Image(label="Learning Curve")
+                    gr.Gallery(allow_preview=True, label="Data Visualization", object_fit="fill", type="numpy", height="auto", rows=(1, 2), columns=[1])
+                    
 
                     
                 ]
